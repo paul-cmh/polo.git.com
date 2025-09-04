@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Horloge en temps réel</title>
+</head>
+<body>
+  <h2>Horloge en temps réel</h2>
+
+  <!-- Zone de saisie pour afficher l'heure -->
+  <input type="text" id="horloge" readonly>
+
+  <script>
+    function afficherHeure() {
+      const maintenant = new Date();
+
+      let heures = maintenant.getHours();
+      let minutes = maintenant.getMinutes();
+      let secondes = maintenant.getSeconds();
+
+      // Ajouter un 0 devant si < 10 pour avoir HH:MM:SS
+      heures = heures < 10 ? "0" + heures : heures;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      secondes = secondes < 10 ? "0" + secondes : secondes;
+
+      // Mettre l'heure dans l'input
+      document.getElementById("horloge").value = heures + ":" + minutes + ":" + secondes;
+
+      // Actualiser toutes les secondes
+      setTimeout(afficherHeure, 1000);
+    }
+
+    // Lancer la fonction dès que la page est chargée
+    afficherHeure();
+  </script>
+</body>
+</html>

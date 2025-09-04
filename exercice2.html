@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 2 - Nombres</title>
+</head>
+<body>
+  <h2>Manipulation des nombres</h2>
+
+  <!-- Champ pour entrer un nombre -->
+  <input type="number" id="userNumber" placeholder="Entrez un nombre">
+
+  <!-- Zone pour afficher les résultats -->
+  <p id="racine"></p>
+  <p id="arrondi"></p>
+  <p id="randomResult"></p>
+  <p id="randomRangeResult"></p>
+
+  <!-- Boutons -->
+  <button onclick="calculer()">Calculer</button>
+  <button onclick="Aleatoire()">Nombre aléatoire (1-100)</button>
+  <button onclick="Aleatoire2(10,50)">Nombre aléatoire (10-50)</button>
+
+  <script>
+    // Fonction qui calcule racine carrée + arrondi
+    function calculer() {
+      let valeur = document.getElementById("userNumber").value;
+      valeur = parseFloat(valeur); // Conversion en nombre
+
+      if (!isNaN(valeur)) {
+        // Racine carrée
+        let racine = Math.sqrt(valeur);
+        document.getElementById("racine").textContent = "Racine carrée : " + racine;
+
+        // Arrondi à la décimale la plus proche
+        let arrondi = Math.round(valeur);
+        document.getElementById("arrondi").textContent = "Arrondi : " + arrondi;
+      } else {
+        alert("Veuillez entrer un nombre valide !");
+      }
+    }
+
+    // Fonction Aleatoire simple (entre 1 et 100)
+    function Aleatoire() {
+      let nombre = Math.floor(Math.random() * 100) + 1;
+      document.getElementById("randomResult").textContent = "Nombre aléatoire (1-100) : " + nombre;
+    }
+
+    // Fonction Aleatoire2 avec min et max
+    function Aleatoire2(min, max) {
+      let nombre = Math.floor(Math.random() * (max - min + 1)) + min;
+      document.getElementById("randomRangeResult").textContent = "Nombre aléatoire (" + min + "-" + max + ") : " + nombre;
+    }
+  </script>
+</body>
+</html>

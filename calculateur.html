@@ -1,0 +1,58 @@
+ <<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculateur de prêt hypothécaire</title>
+</head>
+<body>
+  <h2>Calculateur de prêt hypothécaire</h2>
+
+  <form id="mortgageForm">
+    <label>Montant du prêt : </label>
+    <input type="number" id="montant" placeholder="ex: 100000"><br><br>
+
+    <label>Taux d'intérêt annuel (%) : </label>
+    <input type="number" id="taux" step="0.01" placeholder="ex: 5"><br><br>
+
+    <label>Durée (années) : </label>
+    <input type="number" id="annees" placeholder="ex: 20"><br><br>
+
+    <button type="button" onclick="calculerPaiement()">Calculer</button>
+  </form>
+
+  <p id="resultat"></p>
+
+  <script>
+    function calculerPaiement() {
+      let P = parseFloat(document.getElementById("montant").value);
+      let tauxAnnuel = parseFloat(document.getElementById("taux").value);
+      let annees = parseInt(document.getElementById("annees").value);
+
+      // Validation des champs
+      if(isNaN(P) || P <= 0) {
+        alert("Veuillez entrer un montant de prêt valide !");
+        return;
+      }
+      if(isNaN(tauxAnnuel) || tauxAnnuel <= 0) {
+        alert("Veuillez entrer un taux d'intérêt valide !");
+        return;
+      }
+      if(isNaN(annees) || annees <= 0) {
+        alert("Veuillez entrer une durée valide !");
+        return;
+      }
+
+      let r = tauxAnnuel / 100 / 12; // taux mensuel
+      let n = annees * 12; // nombre total de paiements
+
+      // Formule d'amortissement
+      let M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+
+      // Arrondir à 2 décimales
+      M = M.toFixed(2);
+
+      document.getElementById("resultat").textContent = "Paiement mensuel : " + M + " €";
+    }
+  </script>
+</body>
+</html>

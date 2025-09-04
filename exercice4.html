@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 5 - Tableaux</title>
+</head>
+<body>
+  <h2>Manipulation de tableaux</h2>
+
+  <p id="tableauInitial"></p>
+  <p id="tableauAjoute"></p>
+  <p id="tableauSupprime"></p>
+  <p id="tableauTrie"></p>
+
+  <script>
+    // 1. Création du tableau initial
+    let nombres = [5, 8, 2, 10, 3];
+    document.getElementById("tableauInitial").textContent = "Tableau initial : " + nombres;
+
+    // 2. Ajouter un nouvel élément à la fin
+    nombres.push(7); // ajoute 7 à la fin
+    document.getElementById("tableauAjoute").textContent = "Après ajout : " + nombres;
+
+    // 3. Supprimer un élément spécifique (par exemple 8)
+    let index = nombres.indexOf(8);
+    if(index !== -1) {
+      nombres.splice(index, 1); // supprime l'élément à cet index
+    }
+    document.getElementById("tableauSupprime").textContent = "Après suppression : " + nombres;
+
+    // 4. Trier le tableau par ordre croissant
+    nombres.sort(function(a, b) {
+      return a - b;
+    });
+    document.getElementById("tableauTrie").textContent = "Tableau trié : " + nombres;
+  </script>
+</body>
+</html>

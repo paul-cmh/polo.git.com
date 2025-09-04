@@ -1,0 +1,55 @@
+ <<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 3 - Manipulation de dates</title>
+</head>
+<body>
+  <h2>Manipulation de dates</h2>
+
+  <!-- Formulaire pour entrer la date -->
+  <form id="dateForm">
+    Saisissez une date (JJ-MM-AAAA) :
+    <input type="text" id="userDate" placeholder="ex : 25-08-2025">
+    <button type="button" onclick="traiterDate()">Valider</button>
+  </form>
+
+  <!-- Zones pour afficher les résultats -->
+  <p id="jour"></p>
+  <p id="mois"></p>
+  <p id="annee"></p>
+  <p id="diffJours"></p>
+
+  <script>
+    function traiterDate() {
+      let dateStr = document.getElementById("userDate").value;
+
+      // Séparer le texte en jour, mois, année
+      let parties = dateStr.split("-");
+      if (parties.length !== 3) {
+        alert("Veuillez entrer la date au format JJ-MM-AAAA !");
+        return;
+      }
+
+      let jour = parseInt(parties[0], 10);
+      let mois = parseInt(parties[1], 10) - 1; // JS compte les mois de 0 à 11
+      let annee = parseInt(parties[2], 10);
+
+      // Créer un objet Date
+      let dateObj = new Date(annee, mois, jour);
+
+      // Afficher jour, mois, année
+      document.getElementById("jour").textContent = "Jour : " + dateObj.getDate();
+      document.getElementById("mois").textContent = "Mois : " + (dateObj.getMonth() + 1);
+      document.getElementById("annee").textContent = "Année : " + dateObj.getFullYear();
+
+      // Calculer la différence en jours
+      let aujourdHui = new Date();
+      let diff = aujourdHui - dateObj; // différence en millisecondes
+      let diffJours = Math.floor(diff / (1000 * 60 * 60 * 24)); // convertir en jours
+
+      document.getElementById("diffJours").textContent = "Différence en jours : " + diffJours;
+    }
+  </script>
+</body>
+</html>
